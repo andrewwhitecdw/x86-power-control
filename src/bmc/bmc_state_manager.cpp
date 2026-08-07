@@ -14,9 +14,12 @@
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/exception.hpp>
 
-#include <filesystem>
+#include <cassert>
+#include <chrono>
 #include <fstream>
-#include <iostream>
+#include <linux/watchdog.h>
+#include <sys/sysinfo.h>
+#include <thread>
 
 namespace phosphor
 {
@@ -410,7 +413,7 @@ void BMC::createRFLogEntry(const std::string& messageId,
         this->bus.call_noreply(method, timeout_us);
         // Since we are going for reboot, Logging service needs time before we
         // trigger reboot
-        usleep(2000000);
+        std::this_thread::sleep_for(std::chrono::seconds(2));
     }
     catch (const sdbusplus::exception::exception& e)
     {
