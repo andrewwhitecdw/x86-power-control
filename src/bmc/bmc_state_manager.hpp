@@ -131,7 +131,7 @@ class BMC : public BMCInherit
      * @param[in]  msg       - Data associated with subscribed signal
      *
      */
-    int bmcStateChange(sdbusplus::message_t& msg);
+    void bmcStateChange(sdbusplus::message_t& msg);
 
     /** @brief Persistent sdbusplus DBus bus connection. **/
     sdbusplus::bus_t& bus;
