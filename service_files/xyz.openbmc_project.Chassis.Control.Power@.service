@@ -1,5 +1,5 @@
 [Unit]
-Description=VR Power Control for the Host %i
+Description=x86 Power Control for the Host %i
 ConditionPathExists=/usr/share/x86-power-control/power-config-host%i.json
 
 Conflicts=xyz.openbmc_project.State.Chassis@%i.service
