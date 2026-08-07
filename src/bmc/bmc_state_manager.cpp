@@ -227,7 +227,7 @@ bool BMC::executeTransition(const Transition tranReq)
     return true;
 }
 
-int BMC::bmcStateChange(sdbusplus::message_t& msg)
+void BMC::bmcStateChange(sdbusplus::message_t& msg)
 {
     uint32_t newStateID{};
     sdbusplus::message::object_path newStateObjPath;
@@ -241,7 +241,7 @@ int BMC::bmcStateChange(sdbusplus::message_t& msg)
     {
         error("BMC has entered BMC_QUIESCED state");
         bmcIsQuiesced();
-        return 0;
+        return;
     }
 
     // Caught the signal that indicates the BMC is now BMC_READY
@@ -250,8 +250,6 @@ int BMC::bmcStateChange(sdbusplus::message_t& msg)
         info("BMC_READY");
         this->currentBMCState(BMCState::Ready);
     }
-
-    return 0;
 }
 
 BMC::Transition BMC::requestedBMCTransition(Transition value)
