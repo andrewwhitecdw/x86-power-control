@@ -14,9 +14,7 @@
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/exception.hpp>
 
-#include <filesystem>
 #include <fstream>
-#include <iostream>
 
 namespace phosphor
 {
