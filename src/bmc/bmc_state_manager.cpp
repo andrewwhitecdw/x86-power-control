@@ -14,6 +14,7 @@
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/exception.hpp>
 
+#include <cassert>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
