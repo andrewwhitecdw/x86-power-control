@@ -263,10 +263,6 @@ class NVL144PowerControl : public VRPowerControl
     void transitionToPDBMainPowerOffStateWithCheck();
 
   private:
-    /**
-     * @brief Required NVL144 PDB signals (always required for NVL144 platform)
-     */
-    /**
      * @brief List of required NVL144 platform-specific timer configurations
      */
     const std::vector<std::string> platformRequiredTimeoutValues = {
