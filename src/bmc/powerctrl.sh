@@ -320,6 +320,11 @@ usage()
 }
 
 # Main entry point - dispatch based on command
+if [ "$#" -ne 1 ]; then
+    usage >&2
+    exit 1
+fi
+
 case "$1" in
     power_on)
         power_on
