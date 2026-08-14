@@ -280,9 +280,17 @@ bool waitBmcReady(sdbusplus::bus_t& bus, std::chrono::seconds timeout)
     using namespace std::chrono_literals;
     while (timeout > 0s)
     {
-        if (isBmcReady(bus))
+        try
         {
-            return true;
+            if (isBmcReady(bus))
+            {
+                return true;
+            }
+        }
+        catch (const std::exception& e)
+        {
+            debug("BMC state is not ready yet, exception: {ERROR}", "ERROR",
+                  e.what());
         }
         std::this_thread::sleep_for(1s);
         timeout -= 1s;
