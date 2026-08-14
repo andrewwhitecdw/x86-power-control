@@ -772,7 +772,8 @@ void NVL144PowerControl::deassertHPMPowerAndPeripherals()
                       !board1RunPowerEnable->second->polarity);
     }
 
-    // De-assert peripheral power and assert BMC SSD Reset and SSD Powe
+    // De-assert HPM Run Power and peripheral power (USB, E1S). BMC SSD Reset
+    // and SSD Power Disable are left unchanged per setDefaultValues().
     setGPIOOutput(usbPowerEnable->second, !usbPowerEnable->second->polarity);
     setGPIOOutput(e1sPowerEnable->second, !e1sPowerEnable->second->polarity);
 }
@@ -783,7 +784,7 @@ void NVL144PowerControl::transitionToHPMPowerGoodDeAssertState()
     cancelTimer("CPU Reset Watchdog Timer", cpuResetWatchdogTimer);
 
     lg2::info(
-        "CPU Reset Indicator Asserted. CPUs are in reset. De-asserting Run Power Enable, E1S Power Enable, USB Power Enable, and asserting BMC SSD Reset lines. Starting HPM Power Good Watchdog Timer. Transitioning to PowerState::waitForHPMPowerGoodDeAssert.");
+        "CPU Reset Indicator Asserted. CPUs are in reset. De-asserting Run Power Enable, E1S Power Enable, USB Power Enable. BMC SSD Reset and SSD Power Disable remain unchanged. Starting HPM Power Good Watchdog Timer. Transitioning to PowerState::waitForHPMPowerGoodDeAssert.");
 
     deassertHPMPowerAndPeripherals();
     startTimer("HPMPowerGoodWatchdogMs", hpmPowerGoodWatchdogTimer,
