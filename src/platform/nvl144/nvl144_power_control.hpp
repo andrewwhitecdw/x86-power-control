@@ -41,7 +41,7 @@ class NVL144PowerControl : public VRPowerControl
      * @param state The power state to get a handler for
      * @return Function that handles events in the given state
      */
-    std::function<void(Event)> getPowerStateHandler() override;
+    std::function<void(Event)> getPowerStateHandler(PowerState state) override;
 
   protected:
     /**
