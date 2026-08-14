@@ -34,12 +34,11 @@ class NVL144PowerControl : public VRPowerControl
     ~NVL144PowerControl() override = default;
 
     /**
-     * @brief Get the handler function for a given power state
+     * @brief Get the handler function for the current power state
      *
      * NVL144 does not add new states, so this delegates to VRPowerControl.
      *
-     * @param state The power state to get a handler for
-     * @return Function that handles events in the given state
+     * @return Function that handles events in the current power state
      */
     std::function<void(Event)> getPowerStateHandler() override;
 
