@@ -269,16 +269,14 @@ void NVL144PowerControl::handleShutdownRequest(Event event)
     if (isSystemPowerOff())
     {
         // If this is part of a power cycle, continue with the cycle
-        if (action == PowerAction::POWER_CYCLE)
+        if (action == PowerAction::POWER_CYCLE ||
+            action == PowerAction::GRACEFUL_POWER_CYCLE)
         {
+            std::string cycleType =
+                (action == PowerAction::POWER_CYCLE) ? "forceful" : "graceful";
             lg2::info(
-                "Power already off during forceful power cycle. Setting GPIOs for host state OFF, starting power cycle delay timer, and transitioning to PowerState::waitForPowerCycleDelay");
-            transitionToPowerCycleDelay();
-        }
-        else if (action == PowerAction::GRACEFUL_POWER_CYCLE)
-        {
-            lg2::info(
-                "Power already off during graceful power cycle. Setting GPIOs for host state OFF, starting power cycle delay timer, and transitioning to PowerState::waitForPowerCycleDelay");
+                "Power already off during {CYCLE_TYPE} power cycle. Setting GPIOs for host state OFF, starting power cycle delay timer, and transitioning to PowerState::waitForPowerCycleDelay",
+                "CYCLE_TYPE", cycleType);
             transitionToPowerCycleDelay();
         }
         else
