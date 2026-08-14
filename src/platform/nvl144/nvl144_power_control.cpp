@@ -404,7 +404,12 @@ void NVL144PowerControl::handlePowerOnRequest()
         setGPIOsForHostStateOff();
         lg2::info(
             "Asserting NVL144 PDB Main Power Enable. Starting PDB Main Power OK Watchdog Timer. Transitioning to PowerState::waitForPDBMainPowerOk");
-        action = PowerAction::POWER_ON;
+        // Preserve a pending power-cycle action set by handlePowerCycleWhenOff.
+        if (action != PowerAction::POWER_CYCLE &&
+            action != PowerAction::GRACEFUL_POWER_CYCLE)
+        {
+            action = PowerAction::POWER_ON;
+        }
         setGPIOOutput(nvl144pdbMainPowerEnable,
                       nvl144pdbMainPowerEnable->polarity);
         startTimer("NVL144PdbMainPowerOkWatchdogMs",
