@@ -192,7 +192,6 @@ int main(int argc, char* argv[])
     PersistentState appState;
 
     static std::string node = "0";
-    static const std::string appName = "power-control";
 
     if (argc > 1)
     {
