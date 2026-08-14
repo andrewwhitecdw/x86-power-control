@@ -38,7 +38,6 @@ class NVL144PowerControl : public VRPowerControl
      *
      * NVL144 does not add new states, so this delegates to VRPowerControl.
      *
-     * @param state The power state to get a handler for
      * @return Function that handles events in the given state
      */
     std::function<void(Event)> getPowerStateHandler() override;
