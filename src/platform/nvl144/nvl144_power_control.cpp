@@ -772,7 +772,7 @@ void NVL144PowerControl::deassertHPMPowerAndPeripherals()
                       !board1RunPowerEnable->second->polarity);
     }
 
-    // De-assert peripheral power and assert BMC SSD Reset and SSD Powe
+    // De-assert peripheral power
     setGPIOOutput(usbPowerEnable->second, !usbPowerEnable->second->polarity);
     setGPIOOutput(e1sPowerEnable->second, !e1sPowerEnable->second->polarity);
 }
