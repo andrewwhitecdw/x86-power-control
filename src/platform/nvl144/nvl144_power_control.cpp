@@ -697,9 +697,7 @@ void NVL144PowerControl::completeShutdownAndTransitionToOff(bool success)
             // Unknown action - default to off
             lg2::warning(
                 "NVL144 PDB Powered Down. Setting GPIO states to match Host State OFF. Transitioning to PowerState::off.");
-            action = PowerAction::NONE;
-            setPowerState(PowerState::off);
-            setGPIOsForHostStateOff();
+            transitionToOffState();
             break;
     }
 }
