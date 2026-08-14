@@ -204,9 +204,9 @@ int main(int argc, char* argv[])
     std::shared_ptr<sdbusplus::asio::connection> conn =
         std::make_shared<sdbusplus::asio::connection>(io);
 
-    NVL144PowerControl powerControl(
-        io, conn, "/usr/share/x86-power-control/power-config-host0.json", node,
-        appState);
+    const std::string configFilePath =
+        "/usr/share/x86-power-control/power-config-host" + node + ".json";
+    NVL144PowerControl powerControl(io, conn, configFilePath, node, appState);
 
     PowerRestoreController powerRestore(io, conn, node, powerControl, appState);
 
