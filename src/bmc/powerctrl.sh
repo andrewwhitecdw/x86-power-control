@@ -46,11 +46,11 @@ power_on()
     if [ $rc -eq 0 ]; then
         echo "Power on request sent successfully"
         # Wait for log capture to complete (ignore timeout exit code)
-        wait $LOG_PID 2>/dev/null
+        wait "$LOG_PID" 2>/dev/null
         return 0
     else
         echo "Failed to send power on request"
-        kill $LOG_PID 2>/dev/null
+        kill "$LOG_PID" 2>/dev/null
         wait "$LOG_PID" 2>/dev/null || true
         return 1
     fi
@@ -73,11 +73,11 @@ power_off()
     local rc=$?
     if [ $rc -eq 0 ]; then
         echo "Force power off request sent successfully"
-        wait $LOG_PID 2>/dev/null
+        wait "$LOG_PID" 2>/dev/null
         return 0
     else
         echo "Failed to send force power off request"
-        kill $LOG_PID 2>/dev/null
+        kill "$LOG_PID" 2>/dev/null
         wait "$LOG_PID" 2>/dev/null || true
         return 1
     fi
@@ -100,11 +100,11 @@ do_shutdown_force()
     local rc=$?
     if [ $rc -eq 0 ]; then
         echo "Force shutdown request sent successfully"
-        wait $LOG_PID 2>/dev/null
+        wait "$LOG_PID" 2>/dev/null
         return 0
     else
         echo "Failed to send force shutdown request"
-        kill $LOG_PID 2>/dev/null
+        kill "$LOG_PID" 2>/dev/null
         wait "$LOG_PID" 2>/dev/null || true
         return 1
     fi
@@ -127,11 +127,11 @@ do_shutdown_request()
     local rc=$?
     if [ $rc -eq 0 ]; then
         echo "Graceful shutdown request sent successfully"
-        wait $LOG_PID 2>/dev/null
+        wait "$LOG_PID" 2>/dev/null
         return 0
     else
         echo "Failed to send graceful shutdown request"
-        kill $LOG_PID 2>/dev/null
+        kill "$LOG_PID" 2>/dev/null
         wait "$LOG_PID" 2>/dev/null || true
         return 1
     fi
@@ -207,11 +207,11 @@ reset()
     local rc=$?
     if [ $rc -eq 0 ]; then
         echo "Reset request sent successfully"
-        wait $LOG_PID 2>/dev/null
+        wait "$LOG_PID" 2>/dev/null
         return 0
     else
         echo "Failed to send reset request"
-        kill $LOG_PID 2>/dev/null
+        kill "$LOG_PID" 2>/dev/null
         wait "$LOG_PID" 2>/dev/null || true
         return 1
     fi
@@ -234,11 +234,11 @@ power_cycle()
     local rc=$?
     if [ $rc -eq 0 ]; then
         echo "Power cycle request sent successfully"
-        wait $LOG_PID 2>/dev/null
+        wait "$LOG_PID" 2>/dev/null
         return 0
     else
         echo "Failed to send power cycle request"
-        kill $LOG_PID 2>/dev/null
+        kill "$LOG_PID" 2>/dev/null
         wait "$LOG_PID" 2>/dev/null || true
         return 1
     fi
@@ -261,11 +261,11 @@ graceful_warm_reboot()
     local rc=$?
     if [ $rc -eq 0 ]; then
         echo "Graceful warm reboot request sent successfully"
-        wait $LOG_PID 2>/dev/null
+        wait "$LOG_PID" 2>/dev/null
         return 0
     else
         echo "Failed to send graceful warm reboot request"
-        kill $LOG_PID 2>/dev/null
+        kill "$LOG_PID" 2>/dev/null
         wait "$LOG_PID" 2>/dev/null || true
         return 1
     fi
@@ -288,11 +288,11 @@ force_warm_reboot()
     local rc=$?
     if [ $rc -eq 0 ]; then
         echo "Force warm reboot request sent successfully"
-        wait $LOG_PID 2>/dev/null
+        wait "$LOG_PID" 2>/dev/null
         return 0
     else
         echo "Failed to send force warm reboot request"
-        kill $LOG_PID 2>/dev/null
+        kill "$LOG_PID" 2>/dev/null
         wait "$LOG_PID" 2>/dev/null || true
         return 1
     fi
