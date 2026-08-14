@@ -161,6 +161,16 @@ void NVL144PowerControl::initiateCPUShutdown(
     const std::string& shutdownSignalName,
     const std::string& shutdownOkTimerName, const std::string& shutdownAction)
 {
+    // Only the two known Board 0 shutdown signals have a Board 1 counterpart.
+    // Reject any unexpected name before touching any GPIO.
+    if (shutdownSignalName != "Board0CpuShutdownForce" &&
+        shutdownSignalName != "Board0CpuShutdownRequest")
+    {
+        lg2::error("Unsupported CPU shutdown signal: {SIGNAL}", "SIGNAL",
+                   shutdownSignalName);
+        return;
+    }
+
     auto shutdownSignal = powerSignalMap.find(shutdownSignalName);
     if (shutdownSignal == powerSignalMap.end())
     {
