@@ -587,7 +587,7 @@ void NVL144PowerControl::transitionToHPMPowerGoodAssertState()
                 pdbMainPowerOkWatchdogTimer);
 
     lg2::info(
-        "NVL144 PDB Main Power OK Asserted. Conducting HPM Board Power Sequencing. Asserting HPM Board Pre System Reset, E1S Power Enable, de-asserting BMC SDD Reset, and asserting Run Power Enable Lines. Starting HPM Power Good Watchdog Timer. Transitioning to PowerState::waitForHPMPowerGoodAssert.");
+        "NVL144 PDB Main Power OK Asserted. Conducting HPM Board Power Sequencing. Asserting HPM Board Pre System Reset, E1S Power Enable, de-asserting BMC SSD Reset, and asserting Run Power Enable Lines. Starting HPM Power Good Watchdog Timer. Transitioning to PowerState::waitForHPMPowerGoodAssert.");
 
     assertHPMBoardPowerSequence();
     startTimer("HPMPowerGoodWatchdogMs", hpmPowerGoodWatchdogTimer,
