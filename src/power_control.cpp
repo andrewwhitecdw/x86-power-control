@@ -57,13 +57,10 @@ static constexpr std::string_view getSlotState(const SlotPowerState state)
     {
         case SlotPowerState::on:
             return "xyz.openbmc_project.State.Chassis.PowerState.On";
-            break;
         case SlotPowerState::off:
             return "xyz.openbmc_project.State.Chassis.PowerState.Off";
-            break;
         default:
             return "";
-            break;
     }
 };
 
