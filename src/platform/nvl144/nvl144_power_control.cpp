@@ -91,11 +91,11 @@ void NVL144PowerControl::nvl144pdbMainPowerOkHandler(bool state)
 
 std::function<void(Event)> NVL144PowerControl::getPowerStateHandler()
 {
-    // NVL144 does not define new PowerState values, so delegate everything
-    // to VRPowerControl which handles all VR and upstream states
+    // NVL144 does not add new PowerState enum values; it overrides handlers
+    // for existing states and delegates the rest to VRPowerControl
     switch (powerState)
     {
-        // No NVL144-specific states (empty switch)
+        // NVL144-specific state handlers
         case PowerState::off:
             return [this](Event e) { this->handlePowerStateOff(e); };
         case PowerState::on:
