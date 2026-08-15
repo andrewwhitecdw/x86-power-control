@@ -302,10 +302,16 @@ BMC::RebootCause BMC::lastRebootCause(RebootCause value)
 void BMC::updateLastRebootTime()
 {
     using namespace std::chrono;
-    struct sysinfo info;
+    struct sysinfo info{};
 
     auto rc = sysinfo(&info);
-    assert(rc == 0);
+    if (rc < 0)
+    {
+        auto err = errno;
+        error("sysinfo call failed with errno {ERRNO}", "ERRNO", err);
+        return;
+    }
+
     // Since uptime is in seconds, also get the current time in seconds.
     auto now = time_point_cast<seconds>(system_clock::now());
     auto rebootTimeTs = now - seconds(info.uptime);
