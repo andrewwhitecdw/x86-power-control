@@ -319,6 +319,24 @@ uint64_t BMC::lastRebootTime() const
     return rebootTime;
 }
 
+// Convert a watchdog bootstatus bitmask into the BMC reboot cause.
+// The kernel reports multiple flags simultaneously, so exact value
+// matching is not correct.
+BMC::RebootCause bootStatusToRebootCause(uint64_t bootReason)
+{
+    if (bootReason & WDIOF_EXTERN1)
+    {
+        return BMC::RebootCause::Software;
+    }
+
+    if (bootReason & WDIOF_CARDRESET)
+    {
+        return BMC::RebootCause::Watchdog;
+    }
+
+    return BMC::RebootCause::POR;
+}
+
 void BMC::discoverLastRebootCause()
 {
     uint64_t bootReason = 0;
@@ -340,21 +358,16 @@ void BMC::discoverLastRebootCause()
               bootstatusPath, "ERRNO", rc);
     }
 
-    switch (bootReason)
+    auto cause = bootStatusToRebootCause(bootReason);
+    this->lastRebootCause(cause);
+
+    if (cause != RebootCause::POR)
     {
-        case WDIOF_EXTERN1:
-            this->lastRebootCause(RebootCause::Software);
-            return;
-        case WDIOF_CARDRESET:
-            this->lastRebootCause(RebootCause::Watchdog);
-            return;
-        default:
-            this->lastRebootCause(RebootCause::POR);
-            // Continue below to see if more details can be found
-            // on reason for reboot
-            break;
+        return;
     }
 
+    // Continue below to see if more details can be found
+    // on reason for reboot
     // If the above code could not detect a reason, look for a the
     // reset-cause-pinhole gpio to see if it is the reason for the reboot
     auto gpioval =
