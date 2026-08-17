@@ -172,6 +172,9 @@ int getGpioValue(const std::string& gpioName)
         if (0 != gpiod_line_request_input(line, "state-manager"))
         {
             error("Failed request for {GPIO_NAME} GPIO", "GPIO_NAME", gpioName);
+
+            // release ownership of gpio on failure path as well
+            gpiod_line_close_chip(line);
         }
         else
         {
