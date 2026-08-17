@@ -45,7 +45,6 @@ NVL144PowerControl::NVL144PowerControl(
         addRequiredSignal("Board1CpuShutdownOk", 1, GPIODirection::IN);
         addRequiredSignal("Board1CpuShutdownForce", 1, GPIODirection::OUT);
         addRequiredSignal("Board1CpuShutdownRequest", 1, GPIODirection::OUT);
-        addBoard1GpioStateProperties();
     }
 
     // Validate all required signals (VR + NVL144)
@@ -62,6 +61,11 @@ NVL144PowerControl::NVL144PowerControl(
     // will return and ALL interfaces (Host, Boot.Progress, OS, Gpio) will be
     // ready
     initializeHostStateInterface();
+
+    if (boardPresence.board1Present && gpioStateIface != nullptr)
+    {
+        addBoard1GpioStateProperties();
+    }
 
     // Initialize power state from actual hardware before power restore runs
     // For NVL144: Host is ON only if BOTH Board0RunPowerPG AND
