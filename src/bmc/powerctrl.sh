@@ -160,9 +160,9 @@ power_status()
 
     if [ -n "$host_state" ]; then
         echo "  Host State: $host_state"
-        if [ "$host_state" == "$HOST_STATE_RUNNING" ]; then
+        if [ "$host_state" = "$HOST_STATE_RUNNING" ]; then
             echo "  Host: Running"
-        elif [ "$host_state" == "$HOST_STATE_OFF" ]; then
+        elif [ "$host_state" = "$HOST_STATE_OFF" ]; then
             echo "  Host: Off"
         else
             echo "  Host: Transitioning"
@@ -178,9 +178,9 @@ power_status()
 
     if [ -n "$chassis_state" ]; then
         echo "  Chassis State: $chassis_state"
-        if [ "$chassis_state" == "$CHASSIS_STATE_ON" ]; then
+        if [ "$chassis_state" = "$CHASSIS_STATE_ON" ]; then
             echo "  Chassis Power: On"
-        elif [ "$chassis_state" == "$CHASSIS_STATE_OFF" ]; then
+        elif [ "$chassis_state" = "$CHASSIS_STATE_OFF" ]; then
             echo "  Chassis Power: Off"
         else
             echo "  Chassis Power: Transitioning"
