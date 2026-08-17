@@ -38,7 +38,7 @@ power_on()
     echo "For detailed logging, use: 'journalctl -u xyz.openbmc_project.Chassis.Control.Power@0'"
     echo "Starting log capture..."
     timeout 10 journalctl -fu xyz.openbmc_project.Chassis.Control.Power@0 -n 0 --no-pager &
-    LOG_PID=$!    
+    LOG_PID=$!
     sleep 1 # Give journalctl time to start
     busctl set-property "$HOST_SERVICE" "$HOST_PATH" "$HOST_IFACE" \
         RequestedHostTransition s "$HOST_TRANSITION_ON"
