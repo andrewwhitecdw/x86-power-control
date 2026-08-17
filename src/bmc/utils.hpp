@@ -39,8 +39,8 @@ void subscribeToSystemdSignals(sdbusplus::bus_t& bus);
  *
  * @return The name of the service
  */
-std::string getService(sdbusplus::bus_t& bus, std::string path,
-                       std::string interface);
+std::string getService(sdbusplus::bus_t& bus, const std::string& path,
+                       const std::string& interface);
 
 /** @brief Get the value of input property
  *
