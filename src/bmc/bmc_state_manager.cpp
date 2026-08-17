@@ -14,9 +14,14 @@
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/exception.hpp>
 
+#include <cassert>
+#include <chrono>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+
+#include <linux/watchdog.h>
+#include <sys/sysinfo.h>
 
 namespace phosphor
 {
