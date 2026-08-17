@@ -352,7 +352,7 @@ case "$1" in
         force_warm_reboot
         ;;
     *)
-        usage
+        usage >&2
         exit 1
         ;;
 esac
