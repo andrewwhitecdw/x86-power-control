@@ -229,8 +229,8 @@ power_cycle()
     LOG_PID=$!
     sleep 1
     
-    busctl set-property "$HOST_SERVICE" "$HOST_PATH" "$HOST_IFACE" \
-        RequestedHostTransition s "$HOST_TRANSITION_REBOOT"
+    busctl set-property "$CHASSIS_SERVICE" "$CHASSIS_PATH" "$CHASSIS_IFACE" \
+        RequestedPowerTransition s "$CHASSIS_TRANSITION_POWER_CYCLE"
     local rc=$?
     if [ $rc -eq 0 ]; then
         echo "Power cycle request sent successfully"
