@@ -32,6 +32,4 @@ int main()
         bus.process_discard();
         bus.wait();
     }
-
-    exit(EXIT_SUCCESS);
 }
