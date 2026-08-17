@@ -157,8 +157,6 @@ void setProperty(sdbusplus::bus_t& bus, const std::string& path,
                                       PROPERTY_INTERFACE, "Set");
     method.append(interface, property, variantValue);
     bus.call_noreply(method);
-
-    return;
 }
 
 int getGpioValue(const std::string& gpioName)
