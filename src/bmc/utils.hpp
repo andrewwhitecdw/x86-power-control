@@ -9,6 +9,7 @@
 #include <xyz/openbmc_project/Logging/Entry/server.hpp>
 
 #include <chrono>
+#include <cstddef>
 #include <map>
 #include <string>
 #include <variant>
