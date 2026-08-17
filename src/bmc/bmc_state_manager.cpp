@@ -8,7 +8,10 @@
 #include "utils.hpp"
 #include "xyz/openbmc_project/Common/error.hpp"
 
-#include <gpiod.h>
+#include <linux/watchdog.h>
+#include <sys/sysinfo.h>
+
+#include <cassert>
 
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/lg2.hpp>
