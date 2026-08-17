@@ -6,12 +6,9 @@
 #include "utils.hpp"
 #include "xyz/openbmc_project/State/BMC/server.hpp"
 
-#include <linux/watchdog.h>
-#include <sys/sysinfo.h>
 
 #include <sdbusplus/bus.hpp>
 
-#include <cassert>
 #include <chrono>
 #include <string>
 #include <unordered_map>
