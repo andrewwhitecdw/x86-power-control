@@ -335,9 +335,8 @@ void BMC::discoverLastRebootCause()
     }
     catch (const std::exception& e)
     {
-        auto rc = errno;
-        error("Failed to read sysfs file {FILE} with errno {ERRNO}", "FILE",
-              bootstatusPath, "ERRNO", rc);
+        error("Failed to read sysfs file {FILE}: {ERROR}", "FILE",
+              bootstatusPath, "ERROR", e.what());
     }
 
     switch (bootReason)
