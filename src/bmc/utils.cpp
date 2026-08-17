@@ -203,7 +203,7 @@ void createError(
                                           LoggingCreate::interface, "Create");
 
         method.append(errorMsg, errLevel, additionalData);
-        auto resp = bus.call(method);
+        (void)bus.call(method);
     }
     catch (const sdbusplus::exception_t& e)
     {
