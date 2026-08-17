@@ -93,27 +93,7 @@ std::function<void(Event)> NVL144PowerControl::getPowerStateHandler()
 {
     // NVL144 does not define new PowerState values, so delegate everything
     // to VRPowerControl which handles all VR and upstream states
-    switch (powerState)
-    {
-        // No NVL144-specific states (empty switch)
-        case PowerState::off:
-            return [this](Event e) { this->handlePowerStateOff(e); };
-        case PowerState::on:
-            return [this](Event e) { this->handlePowerStateOn(e); };
-        case PowerState::waitForPDBMainPowerOk:
-            return [this](Event e) { this->handleWaitForPDBMainPowerOk(e); };
-        case PowerState::waitForPDBMainPowerOff:
-            return [this](Event e) { this->handleWaitForPDBMainPowerOff(e); };
-        case PowerState::waitForCPUResetAssert:
-            return [this](Event e) { this->handleWaitForCPUResetAssert(e); };
-        case PowerState::waitForHPMPowerGoodDeAssert:
-            return
-                [this](Event e) { this->handleWaitForHPMPowerGoodDeAssert(e); };
-        // Add more as Power State Handlers are overridden and implemented by
-        // NVL144PowerControl
-        default:
-            return VRPowerControl::getPowerStateHandler();
-    }
+    return VRPowerControl::getPowerStateHandler();
 }
 
 void NVL144PowerControl::addBoard1GpioStateProperties()
