@@ -75,7 +75,6 @@ void subscribeToSystemdSignals(sdbusplus::bus_t& bus)
         error("Failed to subscribe to systemd signals: {ERROR}", "ERROR", e);
         throw std::runtime_error("Unable to subscribe to systemd signals");
     }
-    return;
 }
 
 std::string getService(sdbusplus::bus_t& bus, std::string path,
