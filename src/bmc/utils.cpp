@@ -15,8 +15,18 @@
 #include <xyz/openbmc_project/State/BMC/client.hpp>
 
 #include <chrono>
+#include <cstddef>
+#include <cstdint>
+#include <exception>
 #include <filesystem>
 #include <format>
+#include <map>
+#include <stdexcept>
+#include <string>
+#include <thread>
+#include <utility>
+#include <variant>
+#include <vector>
 
 namespace phosphor
 {
