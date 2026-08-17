@@ -177,10 +177,10 @@ int getGpioValue(const std::string& gpioName)
         {
             // get gpio value
             gpioval = gpiod_line_get_value(line);
-
-            // release ownership of gpio
-            gpiod_line_close_chip(line);
         }
+
+        // release ownership of gpio
+        gpiod_line_close_chip(line);
     }
     return gpioval;
 }
