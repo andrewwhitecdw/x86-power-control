@@ -325,8 +325,7 @@ void BMC::discoverLastRebootCause()
     std::ifstream file;
     const auto* bootstatusPath = "/sys/class/watchdog/watchdog0/bootstatus";
 
-    file.exceptions(std::ifstream::failbit | std::ifstream::badbit |
-                    std::ifstream::eofbit);
+    file.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 
     try
     {
