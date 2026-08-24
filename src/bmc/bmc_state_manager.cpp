@@ -8,15 +8,19 @@
 #include "utils.hpp"
 #include "xyz/openbmc_project/Common/error.hpp"
 
-#include <gpiod.h>
-
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/exception.hpp>
 
+#include <array>
+#include <cerrno>
+#include <chrono>
 #include <filesystem>
 #include <fstream>
-#include <iostream>
+#include <linux/watchdog.h>
+#include <sys/sysinfo.h>
+#include <unistd.h>
+#include <utility>
 
 namespace phosphor
 {
